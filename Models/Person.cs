@@ -1,38 +1,31 @@
-﻿using Persistence.Controllers.Base.CustomAttributes;
+﻿using growganize;
+using Persistence.Controllers.Base.CustomAttributes;
 using Persistence.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Sample.Models
-{
-    [Table("person")]
+namespace gvsql.Models
+{    
+    [Table(TableMapper.persons)]
     public class Person : Model<Person>
-    {
-        [DefaultValue("person_001")] //swagger
-        [Column("first_name")]
+    {        
         [SqlType(SqlTypes.TEXT_NOT_NULL)]
-        public string? FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
-        [DefaultValue("Ronaldo")]
-        [Column("last_name")]
         [SqlType(SqlTypes.TEXT_NOT_NULL)]
-        public string? LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         [DefaultValue(Sex.MALE)]
-        [Column("sex")]
         [SqlType(SqlTypes.INTEGER_NOT_NULL)]
         public Sex Sex { get; set; }
 
-        [Column("birth")]
         [SqlType(SqlTypes.DATE_NOT_NULL)]
         public DateTime Birth { get; set; }
 
         [DefaultValue(1)]
-        [Column("age")]
         [SqlType(SqlTypes.INTEGER_NOT_NULL)]
         public int Age { get; set; }
 
-        [Column("death")]
         [SqlType(SqlTypes.DATE)]
         public DateTime? Death { get; set; }
     }

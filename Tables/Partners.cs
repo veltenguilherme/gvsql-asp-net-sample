@@ -1,12 +1,9 @@
-﻿using Persistence.Controllers;
-using Sample.Models;
+﻿using gvsql.Models;
+using Persistence.Controllers;
 
-namespace Sample.Tables
+namespace gvsql.Tables
 {
     public class Partners : Table<Partner>
     {
-        public Partners(bool create = false, bool createView = false) : base(create, createView)
-        {
-        }
     }
 }
