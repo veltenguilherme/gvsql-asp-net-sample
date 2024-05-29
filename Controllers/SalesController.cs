@@ -36,9 +36,16 @@ namespace Sample.Controllers
         [HttpGet("getByCode")]
         public async Task<List<Sale>> GetByCode(int code) => await sales.ToListAsync(new Query<Sale>(x => x.Code == code));
 
-        [HttpDelete("Remove")]
+        [HttpGet("getByCodeAndNameRawSql")]
+        public async Task<List<RawSqlExample>> GetByCodeAndNameRawSql(int code, string name) => await sales.ToListRawAsync<RawSqlExample>($@"select *,
+                                                                                                                                                    persons.last_name as person_last_name
+                                                                                                                                               from sales
+                                                                                                                                              inner join users on (users.uuid = sales.user_fk) 
+                                                                                                                                              inner join persons on (persons.uuid = users.person_fk) 
+                                                                                                                                                   where code = {code} and persons.first_name = '{name}'");
+        [HttpDelete("remove")]                                                                                                         
         public async Task<int> RemoveByGuid(Guid guid) => await sales.RemoveAsync(new Sale() { Guid = guid });
-
+        
         private async Task<Sale> InsertSale() =>
                 await sales.UpdateOrInsertAsync(new Sale()
                 {
@@ -88,4 +95,10 @@ namespace Sample.Controllers
             });
         }
     }
+}
+
+public class RawSqlExample
+{
+    public Guid UserFk { get; set; }
+    public string PersonLastName { get; set; } = string.Empty;
 }
