@@ -2,6 +2,7 @@
 using gvsql.Tables;
 using Microsoft.AspNetCore.Mvc;
 using Persistence.Controllers.Base.Queries;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sample.Controllers
 {
@@ -38,14 +39,18 @@ namespace Sample.Controllers
 
         [HttpGet("getByCodeAndNameRawSql")]
         public async Task<List<RawSqlExample>> GetByCodeAndNameRawSql(int code, string name) => await sales.ToListRawAsync<RawSqlExample>($@"select *,
-                                                                                                                                                    persons.last_name as person_last_name
+                                                                                                                                                    persons.first_name,
+                                                                                                                                                    persons.last_name,
+                                                                                                                                                    users.nick_name,
+                                                                                                                                                    persons.sex
                                                                                                                                                from sales
-                                                                                                                                              inner join users on (users.uuid = sales.user_fk) 
-                                                                                                                                              inner join persons on (persons.uuid = users.person_fk) 
+                                                                                                                                              inner join users on (users.uuid = sales.user_fk)
+                                                                                                                                              inner join persons on (persons.uuid = users.person_fk)
                                                                                                                                                    where code = {code} and persons.first_name = '{name}'");
-        [HttpDelete("remove")]                                                                                                         
+
+        [HttpDelete("remove")]
         public async Task<int> RemoveByGuid(Guid guid) => await sales.RemoveAsync(new Sale() { Guid = guid });
-        
+
         private async Task<Sale> InsertSale() =>
                 await sales.UpdateOrInsertAsync(new Sale()
                 {
@@ -99,6 +104,14 @@ namespace Sample.Controllers
 
 public class RawSqlExample
 {
-    public Guid UserFk { get; set; }
-    public string PersonLastName { get; set; } = string.Empty;
+    public Guid UserFk { get; set; }    
+    
+    public string FirstName { get; set; } = string.Empty;
+
+    public string LastName { get; set; } = string.Empty;
+
+    public Sex Sex { get; set; }
+
+    [Column("nick_name")]
+    public string UserName { get; set; } = string.Empty;
 }
