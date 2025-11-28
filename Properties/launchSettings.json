@@ -3,12 +3,11 @@
     "gvsql_aspnet_sample": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "swagger/index.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5000"
+      "applicationUrl": "http://localhost:5000/swagger/index.html"
     },
     "IIS Express": {
       "commandName": "IISExpress",

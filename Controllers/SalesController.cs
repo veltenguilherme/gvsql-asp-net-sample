@@ -49,8 +49,8 @@ namespace Sample.Controllers
                                                                                                                                                    where code = {code} and persons.first_name = '{name}'");
 
         [HttpDelete("remove")]
-        public async Task<int> RemoveByGuid(Guid guid) => await sales.RemoveAsync(new Sale() { Guid = guid });
-
+        public async Task<string> RemoveById(Guid id) => await sales.RemoveAsync(id);
+        
         private async Task<Sale> InsertSale() =>
                 await sales.UpdateOrInsertAsync(new Sale()
                 {
