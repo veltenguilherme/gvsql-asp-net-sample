@@ -23,7 +23,6 @@ This sample project showcases various GVSQL capabilities:
 
 - .NET 8.0 SDK or later
 - PostgreSQL database server
-- Visual Studio 2022 or VS Code (optional)
 
 ## Database Configuration
 
