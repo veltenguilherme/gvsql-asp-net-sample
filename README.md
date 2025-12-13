@@ -19,7 +19,7 @@ Este projeto de exemplo demonstra várias capacidades do GVSQL:
 - ✅ **Atualizar ou Inserir** - Operações de upsert para sincronização de dados
 - ✅ **Injeção de Dependência** - Integração com o container de DI do ASP.NET Core
 
-## Pré-requisitos
+##  Pré-requisitos
 
 - .NET 8.0 SDK ou superior
 - Servidor de banco de dados PostgreSQL
