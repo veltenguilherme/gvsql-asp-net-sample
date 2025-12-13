@@ -1,148 +1,148 @@
 # GVSQL ASP.NET Sample
 
-Um projeto de exemplo ASP.NET Core Web API demonstrando o uso do **GVSQL**, uma biblioteca ORM de código aberto para PostgreSQL que fornece uma experiência similar ao Entity Framework para aplicações .NET.
+A sample ASP.NET Core Web API project demonstrating the usage of **GVSQL**, an open-source ORM library for PostgreSQL that provides an Entity Framework-like experience for .NET applications.
 
-## Sobre o GVSQL
+## About GVSQL
 
-**GVSQL** é uma biblioteca de mapeamento objeto-relacional (ORM) de código aberto para PostgreSQL, projetada para simplificar operações de banco de dados em aplicações .NET. Oferece uma API fluente similar ao Entity Framework, facilitando o trabalho com bancos de dados usando modelos fortemente tipados e consultas similares ao LINQ.
+**GVSQL** is an open-source Object-Relational Mapping (ORM) library for PostgreSQL, designed to simplify database operations in .NET applications. It offers a fluent API similar to Entity Framework, making it easy to work with databases using strongly-typed models and LINQ-like queries.
 
-🔗 **Repositório**: [https://github.com/veltenguilherme/gvsql](https://github.com/veltenguilherme/gvsql)
+🔗 **Repository**: [https://github.com/veltenguilherme/gvsql](https://github.com/veltenguilherme/gvsql)
 
-## Funcionalidades Demonstradas
+## Features Demonstrated
 
-Este projeto de exemplo demonstra várias capacidades do GVSQL:
+This sample project showcases various GVSQL capabilities:
 
-- ✅ **Operações CRUD** - Operações de Criar, Ler, Atualizar e Deletar
-- ✅ **Construção de Consultas** - Consultas similares ao LINQ com expressões type-safe
-- ✅ **Relacionamentos** - Tratamento de chaves estrangeiras e relacionamentos entre entidades
-- ✅ **Suporte a SQL Bruto** - Execute consultas SQL personalizadas quando necessário
-- ✅ **Atualizar ou Inserir** - Operações de upsert para sincronização de dados
-- ✅ **Injeção de Dependência** - Integração com o container de DI do ASP.NET Core
+- ✅ **CRUD Operations** - Create, Read, Update, and Delete operations
+- ✅ **Query Building** - LINQ-like queries with type-safe expressions
+- ✅ **Relationships** - Handling foreign keys and entity relationships
+- ✅ **Raw SQL Support** - Execute custom SQL queries when needed
+- ✅ **Update or Insert** - Upsert operations for data synchronization
+- ✅ **Dependency Injection** - Integration with ASP.NET Core DI container
 
-## Pré-requisitos
+## Prerequisites
 
-- .NET 8.0 SDK ou superior
-- Servidor de banco de dados PostgreSQL
-- Visual Studio 2022 ou VS Code (opcional)
+- .NET 8.0 SDK or later
+- PostgreSQL database server
+- Visual Studio 2022 or VS Code (optional)
 
-## Configuração do Banco de Dados
+## Database Configuration
 
-O projeto está configurado para conectar-se a um banco de dados PostgreSQL. Atualize as configurações de conexão em `DbContext.cs`:
+The project is configured to connect to a PostgreSQL database. Update the connection settings in `DbContext.cs`:
 
 ```csharp
 private Database CreateDb(string name, int port = 5432, string user = "postgres", string pass = "postgres", string hostName = "127.0.0.1")
 ```
 
-Configuração padrão:
+Default configuration:
 - **Host**: 127.0.0.1
-- **Porta**: 5432
-- **Banco de Dados**: gvsql_sample
-- **Usuário**: postgres
-- **Senha**: postgres
+- **Port**: 5432
+- **Database**: gvsql_sample
+- **User**: postgres
+- **Password**: postgres
 
-## Como Começar
+## Getting Started
 
-1. **Clone o repositório**
+1. **Clone the repository**
    ```bash
    git clone <repository-url>
    cd gvsql-asp-net-sample
    ```
 
-2. **Restaure as dependências**
+2. **Restore dependencies**
    ```bash
    dotnet restore
    ```
 
-3. **Configure seu banco de dados**
-   - Certifique-se de que o PostgreSQL está em execução
-   - Crie um banco de dados chamado `gvsql_sample` (ou atualize o nome do banco de dados em `DbContext.cs`)
-   - Atualize as credenciais de conexão se necessário
+3. **Configure your database**
+   - Ensure PostgreSQL is running
+   - Create a database named `gvsql_sample` (or update the database name in `DbContext.cs`)
+   - Update connection credentials if needed
 
-4. **Execute a aplicação**
+4. **Run the application**
    ```bash
    dotnet run
    ```
 
-5. **Acesse o Swagger UI**
-   - A aplicação será iniciada em `http://localhost:5000`
-   - O Swagger UI estará disponível em `http://localhost:5000/swagger`
+5. **Access Swagger UI**
+   - The application will start on `http://localhost:5000`
+   - Swagger UI will be available at `http://localhost:5000/swagger`
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 gvsql-asp-net-sample/
 ├── Controllers/
-│   └── SalesController.cs      # Endpoints da API demonstrando operações GVSQL
+│   └── SalesController.cs      # API endpoints demonstrating GVSQL operations
 ├── Models/
-│   ├── Person.cs               # Modelo de entidade Person
-│   ├── User.cs                 # Modelo de entidade User
-│   ├── Customer.cs             # Modelo de entidade Customer
-│   ├── Partner.cs              # Modelo de entidade Partner
-│   └── Sale.cs                 # Modelo de entidade Sale com relacionamentos
+│   ├── Person.cs               # Person entity model
+│   ├── User.cs                 # User entity model
+│   ├── Customer.cs             # Customer entity model
+│   ├── Partner.cs              # Partner entity model
+│   └── Sale.cs                 # Sale entity model with relationships
 ├── Tables/
-│   ├── Persons.cs              # Classe de tabela para operações Person
-│   ├── Users.cs                # Classe de tabela para operações User
-│   ├── Customers.cs            # Classe de tabela para operações Customer
-│   ├── Partners.cs             # Classe de tabela para operações Partner
-│   └── Sales.cs                # Classe de tabela para operações Sale
-├── DbContext.cs                 # Configuração do contexto do banco de dados
-├── TableMapper.cs              # Mapeamentos de nomes de tabelas
-├── Program.cs                  # Ponto de entrada da aplicação
-└── Startup.cs                  # Configuração de serviços e middleware
+│   ├── Persons.cs              # Table class for Person operations
+│   ├── Users.cs                # Table class for User operations
+│   ├── Customers.cs            # Table class for Customer operations
+│   ├── Partners.cs             # Table class for Partner operations
+│   └── Sales.cs                # Table class for Sale operations
+├── DbContext.cs                 # Database context configuration
+├── TableMapper.cs              # Table name mappings
+├── Program.cs                  # Application entry point
+└── Startup.cs                  # Service configuration and middleware setup
 ```
 
-## Endpoints da API
+## API Endpoints
 
-O `SalesController` fornece os seguintes endpoints:
+The `SalesController` provides the following endpoints:
 
 ### GET `/api/sales/getAll`
-Recupera todos os registros de vendas.
+Retrieves all sales records.
 
 ### POST `/api/sales/updateOrInsert`
-Cria ou atualiza um registro de venda com entidades relacionadas (usuário, cliente, parceiro).
+Creates or updates a sale record with related entities (user, customer, partner).
 
 ### GET `/api/sales/getByCustomerFirstName?name={name}`
-Recupera vendas filtradas pelo primeiro nome do cliente usando consultas similares ao LINQ.
+Retrieves sales filtered by customer's first name using LINQ-like queries.
 
 ### GET `/api/sales/getByCode?code={code}`
-Recupera vendas filtradas por código.
+Retrieves sales filtered by code.
 
 ### GET `/api/sales/getByCodeAndNameRawSql?code={code}&name={name}`
-Demonstra a execução de consulta SQL bruta com mapeamento de resultado personalizado.
+Demonstrates raw SQL query execution with custom result mapping.
 
 ### DELETE `/api/sales/remove?id={guid}`
-Remove um registro de venda por GUID.
+Removes a sale record by GUID.
 
-## Exemplos de Código
+## Code Examples
 
-### Consulta Básica
+### Basic Query
 ```csharp
 [HttpGet("getAll")]
 public async Task<List<Sale>> GetAll() => await sales.ToListAsync();
 ```
 
-### Consulta com Filtro
+### Query with Filter
 ```csharp
 [HttpGet("getByCode")]
 public async Task<List<Sale>> GetByCode(int code) 
     => await sales.ToListAsync(new Query<Sale>(x => x.Code == code));
 ```
 
-### Consulta com Relacionamentos
+### Query with Relationships
 ```csharp
 [HttpGet("getByCustomerFirstName")]
 public async Task<List<Sale>> GetByCustomerFirstName(string name) 
     => await sales.ToListAsync(new Query<Sale>(x => x.Customer.Person.FirstName == name));
 ```
 
-### Atualizar ou Inserir (Upsert)
+### Update or Insert (Upsert)
 ```csharp
 [HttpPost("updateOrInsert")]
 public async Task<Sale> UpdateOrInsert() 
     => await sales.UpdateOrInsertAsync(InsertSale().Result);
 ```
 
-### Consulta SQL Bruta
+### Raw SQL Query
 ```csharp
 [HttpGet("getByCodeAndNameRawSql")]
 public async Task<List<RawSqlExample>> GetByCodeAndNameRawSql(int code, string name) 
@@ -154,9 +154,9 @@ public async Task<List<RawSqlExample>> GetByCodeAndNameRawSql(int code, string n
         where code = {code} and persons.first_name = '{name}'");
 ```
 
-## Exemplo de Definição de Modelo
+## Model Definition Example
 
-Modelos no GVSQL usam atributos para definir o esquema do banco de dados:
+Models in GVSQL use attributes to define database schema:
 
 ```csharp
 [Table(TableMapper.sales)]
@@ -174,28 +174,28 @@ public class Sale : Model<Sale>
 }
 ```
 
-## Dependências
+## Dependencies
 
-- **gvsql** (v2.1.15) - A biblioteca ORM GVSQL
-- **Swashbuckle.AspNetCore.SwaggerGen** (v6.5.0) - Documentação Swagger/OpenAPI
-- **Swashbuckle.AspNetCore.SwaggerUI** (v6.5.0) - Interface Swagger UI
+- **gvsql** (v2.1.15) - The GVSQL ORM library
+- **Swashbuckle.AspNetCore.SwaggerGen** (v6.5.0) - Swagger/OpenAPI documentation
+- **Swashbuckle.AspNetCore.SwaggerUI** (v6.5.0) - Swagger UI interface
 
-## Contribuindo
+## Contributing
 
-Este é um projeto de exemplo. Para contribuições com a biblioteca GVSQL em si, visite:
+This is a sample project. For contributions to the GVSQL library itself, please visit:
 [https://github.com/veltenguilherme/gvsql](https://github.com/veltenguilherme/gvsql)
 
-## Licença
+## License
 
-Este projeto de exemplo é fornecido como está para fins de demonstração. Consulte o repositório GVSQL para informações de licença.
+This sample project is provided as-is for demonstration purposes. Please refer to the GVSQL repository for license information.
 
-## Recursos
+## Resources
 
-- **Repositório GVSQL**: [https://github.com/veltenguilherme/gvsql](https://github.com/veltenguilherme/gvsql)
-- **Documentação .NET**: [https://docs.microsoft.com/dotnet](https://docs.microsoft.com/dotnet)
-- **Documentação PostgreSQL**: [https://www.postgresql.org/docs/](https://www.postgresql.org/docs/)
+- **GVSQL Repository**: [https://github.com/veltenguilherme/gvsql](https://github.com/veltenguilherme/gvsql)
+- **.NET Documentation**: [https://docs.microsoft.com/dotnet](https://docs.microsoft.com/dotnet)
+- **PostgreSQL Documentation**: [https://www.postgresql.org/docs/](https://www.postgresql.org/docs/)
 
-## Suporte
+## Support
 
-Para problemas, perguntas ou contribuições relacionadas ao GVSQL, visite o repositório principal:
+For issues, questions, or contributions related to GVSQL, please visit the main repository:
 [https://github.com/veltenguilherme/gvsql](https://github.com/veltenguilherme/gvsql)
